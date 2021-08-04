@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Formulario from "./components/Formulario";
 import Header from "./components/Header";
 import Resultado from "./components/Resultado";
 import Resumen from "./components/Resumen";
 import Spinner from "./components/Spinner";
+import { CSSTransition } from "react-transition-group";
+import "./index.css";
 
 
 const Contenedor = styled.div`
@@ -47,17 +49,33 @@ function App() {
 
           { cargando ? <Spinner /> : null }
 
-          <Resumen 
-            datos={ datos }
-          />
+          <Fragment>
 
-          { !cargando 
-          ?
-            <Resultado 
-              cotizacion={ cotizacion }
-            />
-          : null
-          }
+            <CSSTransition
+              in={!cargando}
+              timeout={3000}
+              classNames="resumen resultado"
+              unmountOnExit
+            >
+              <Resumen 
+                datos={ datos }
+              />
+            </CSSTransition>
+
+            <CSSTransition
+              in={!cargando}
+              timeout={3000}
+              classNames="resultado"
+              unmountOnExit
+            >
+              <Resultado 
+                cotizacion={ cotizacion }
+              />
+            </CSSTransition>
+              
+          </Fragment>
+          
+        
            
         </ContenedorFormulario>
     </Contenedor>

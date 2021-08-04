@@ -17,21 +17,44 @@ span.resultado {
   position: relative;
   width: 100%;
 }
-.resultado-enter {
-  transition: .5s;
-}
-.resultado-enter.resultado-enter-active{
-  transform: translateY(0%);
-}
-.resultado-exit{
-  transform: translateY(0);
-  transition: .5s;
-  position : absolute;
-  left: 0;
-  bottom : 0;
-  right: 0;
-}
-.resultado-exit-active{
+
+.resumen-enter, .resultado-enter {
   opacity: 0;
-  transform: translateY(-10%);
+  transform: scale(0.9);
+}
+
+.resumen-enter-active, .resultado-enter-active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.resumen-exit, .resultado-exit {
+  opacity: 1;
+}
+
+.resumen-exit-active, .resultado-exit-active {
+  opacity: 0;
+  display: none;
+  transform: scale(0.9);  
+  transition: opacity 300ms, transform 300ms;
+}
+
+.spinner-enter {
+  opacity: 0;
+}
+
+.spinner-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.spinner-exit {
+  opacity: 1;
+}
+
+.spinner-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
 }
